@@ -1,13 +1,10 @@
-import { signup } from '../../utils/actions'
+import { SignUp } from '../../utils/actions'
+import SignUpForm from '@/components/signUpForm'
 
-export default function SignupPage() {
+export default function SignUpPage() {
   return (
-    <form>
-      <label htmlFor="email">Email:</label>
-      <input id="email" name="email" type="email" required />
-      <label htmlFor="password">Password:</label>
-      <input id="password" name="password" type="password" required />
-      <button formAction={signup}>Sign up</button>
-    </form>
+    <main className='h-screen w-screen grid items-center justify-center' >
+      <SignUpForm action={SignUp} />
+    </main>
   )
 }
