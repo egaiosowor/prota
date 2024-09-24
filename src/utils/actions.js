@@ -14,10 +14,10 @@ export async function SignUp(formData) {
         password: formData.get('password'),
         options: {
             data: {
-              firstName: formData.get('firstName'),
-              lastName: formData.get('lastName'),
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
             }
-          }
+        }
     }
 
     const { error } = await supabase.auth.SignUp(data)
@@ -48,7 +48,7 @@ export async function login(formData) {
     }
 
     revalidatePath('/', 'layout')
-    redirect('/private')
+    redirect('/dashboard')
 }
 
 export async function signOut() {
@@ -63,5 +63,39 @@ export async function signOut() {
 
     redirect('/login')
 
-  }
-  
+}
+
+
+export async function updateProfile(id, formData) {
+
+    const {first_name, last_name, title, phone, gender, role} = Object.fromEntries(formData)
+    
+    const formatPhone = (phone) => {
+        return phone.split(" ").join("")
+    }
+
+     
+    try {
+        const supabase = createClient()
+
+        const { error } = await supabase.from('profiles').upsert({
+            id,
+            first_name,
+            last_name,
+            title,
+            phone: formatPhone(phone),
+            gender,
+            role,
+            avatar_url: "",
+            updated_at: new Date().toISOString(),
+        })
+
+        if (error) throw error
+        console.log('Profile updated!')
+    } catch (error) {
+        console.log('Error updating the data!')
+    }
+
+    revalidatePath("/dashboard/profile");
+    redirect("/dashboard/profile");
+}
