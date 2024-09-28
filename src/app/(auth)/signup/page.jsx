@@ -1,5 +1,5 @@
-import { SignUp } from '../../../utils/actions'
-import SignUpForm from '@/app/(auth)/signup/signUpForm'
+import { SignUp } from "./actions"
+import SignUpForm from "./signUpForm"
 
 export default function SignUpPage() {
   return (

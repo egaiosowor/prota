@@ -11,14 +11,14 @@ export default function SignUpForm ({action}){
                     <input 
                         type="text"
                         placeholder="First Name"
-                        name="firstName" 
+                        name="first_name" 
                         required
                         className="col-span-1 p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
                         />
                     <input 
                         type="text"
                         placeholder="Last Name"
-                        name="lastName" 
+                        name="last_name" 
                         required
                         className="col-span-1 p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
                         />

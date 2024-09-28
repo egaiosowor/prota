@@ -1,5 +1,6 @@
-import { login } from '../../../utils/actions'
-import LoginForm from '@/app/(auth)/login/loginForm'
+import { login } from "./action"
+import LoginForm from "./loginForm"
+
 
 export default function LoginPage() {
   return (
