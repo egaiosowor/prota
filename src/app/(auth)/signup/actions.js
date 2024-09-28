@@ -19,6 +19,7 @@ export async function SignUp(formData) {
             data: {
                 first_name,
                 last_name,
+                email
             }
         }
     }
