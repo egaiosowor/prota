@@ -27,7 +27,7 @@ export default function LoginForm ({action}){
                         Login
                     </button>
                 </form>
-                <p className="text-center" >Don't have an account? <Link href={"/SignUp"} className="text-blue-700" >SignUp</Link></p>
+                <p className="text-center" >Don't have an account? <Link href={"/signup"} className="text-blue-700" >SignUp</Link></p>
             </div>
         </div>
 
