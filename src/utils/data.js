@@ -13,8 +13,6 @@ export const fetchProfile = async (user) => {
             .eq('id', user?.id)
             .single()
 
-        console.log(data)
-
         return data
     } catch (error) {
         alert('Error loading user data!')
