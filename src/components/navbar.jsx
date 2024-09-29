@@ -29,7 +29,7 @@ const MenuItems = [
             {
                 title: "Users",
                 icon: <FaRegUser />,
-                path: "/dashboard/users",
+                path: "/users",
             }
         ]
     },
