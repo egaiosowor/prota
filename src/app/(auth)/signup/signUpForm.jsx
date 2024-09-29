@@ -1,15 +1,86 @@
 "use client"
 
 import Link from "next/link"
-import { useFormStatus } from 'react-dom'
+import { signUp } from "./actions"
+import { useFormStatus, useFormState } from 'react-dom'
 
-function SignUp() {
+
+
+export default function SignUpForm() {
+
+    const [state, formAction] = useFormState(signUp, undefined)
+
+
+    return (
+        <div className="w-ful max-w-96 space-y-8" >
+            <h1 className="text-blue-950 text-4xl text-center font-bold" >
+                Sign Up
+            </h1>
+            <div className="space-y-4" >
+                <form action={formAction} className="grid grid-cols-2 gap-3">
+                    <div className="col-span-1 " >
+                        <input
+                            type="text"
+                            placeholder="First Name"
+                            name="first_name"
+                            className="w-full p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
+                        />
+                        {state?.errors?.first_name && (<p className="w-full text-sm text-red-500">{state.errors.first_name}</p>)}
+                    </div>
+                    <div className="col-span-1" >
+                        <input
+                            type="text"
+                            placeholder="Last Name"
+                            name="last_name"
+                            className="w-full p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
+                        />
+                        {state?.errors?.last_name && (<p className="w-full text-sm text-red-500">{state.errors.last_name}</p>)}
+                    </div>
+                    <div className="col-span-2 " >
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            name="email"
+                            className="w-full p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
+                        />
+                        {state?.errors?.email && (<p className="w-full text-sm text-red-500">{state.errors.email}</p>)}
+                    </div>
+                    <div className="col-span-2 " >
+                        <input
+                            type="password"
+                            placeholder="Enter your password"
+                            name="password"
+                            className="w-full p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
+                        />
+                        {state?.errors?.password && (
+                            <div className="text-sm text-red-500">
+                                <p>Password must:</p>
+                                <ul>
+                                    {state.errors.password.map((error) => (
+                                        <li key={error}>- {error}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+
+                    <SignUpButton />
+                </form>
+                <p className="text-center" >Already have an account? <Link href={"/login"} className="text-blue-700" >Login</Link></p>
+            </div>
+        </div>
+
+    )
+}
+
+
+function SignUpButton() {
 
     const { pending } = useFormStatus()
 
     return (
-        <button 
-            type="submit" 
+        <button
+            type="submit"
             disabled={pending}
             className={`flex items-center justify-center col-span-2 py-3 text-white ${pending ? "bg-blue-500" : "bg-blue-700 hover:bg-blue-500"} rounded-xl`}>
             {
@@ -25,53 +96,7 @@ function SignUp() {
 
                 )
             }
-            { pending ? "Submitting" : "Submit" }
+            {pending ? "Submitting" : "Submit"}
         </button>
-    )
-}
-
-export default function SignUpForm ({action}){
-    return(
-        <div className="w-full space-y-8" >
-            <h1 className="text-blue-950 text-4xl text-center font-bold" >
-                Sign Up
-            </h1>
-            <div className="space-y-4" >
-                <form action={action} className="grid grid-cols-2 gap-3">
-                    <input 
-                        type="text"
-                        placeholder="First Name"
-                        name="first_name" 
-                        required
-                        className="col-span-1 p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
-                        />
-                    <input 
-                        type="text"
-                        placeholder="Last Name"
-                        name="last_name" 
-                        required
-                        className="col-span-1 p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
-                        />
-                    <input 
-                        type="email"
-                        placeholder="Email"
-                        name="email" 
-                        required
-                        className="col-span-2 p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
-                        />
-                    <input 
-                        type="password"
-                        placeholder="Enter your password"
-                        name="password" 
-                        required
-                        className="col-span-2 p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
-                        />
-                    
-                    <SignUp/>
-                </form>
-                <p className="text-center" >Already have an account? <Link href={"/login"} className="text-blue-700" >Login</Link></p>
-            </div>
-        </div>
-
     )
 }
