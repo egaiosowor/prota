@@ -1,10 +1,52 @@
 "use client"
 
 import Link from "next/link"
-import { useFormStatus } from 'react-dom'
+import { login } from "./action"
+import { useFormStatus, useFormState } from 'react-dom'
 
 
-function Login() {
+export default function LoginForm() {
+
+    const [state, formAction] = useFormState(login, undefined)
+
+    return (
+        <div className="w-80 space-y-8" >
+            <h1 className="text-blue-950 text-4xl text-center font-bold" >
+                Welcome Back
+            </h1>
+            <div className="space-y-4" >
+                <form action={formAction} className="grid grid-cols-2 gap-3">
+                    <div className="col-span-2" >
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            name="email"
+                            className="w-full p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
+                        />
+                        {state?.errors?.email && (<p className="w-full text-sm text-red-500">{state.errors.email}</p>)}
+                    </div>
+                    <div className="col-span-2" >
+                        <input
+                            type="password"
+                            placeholder="Enter your password"
+                            name="password"
+                            className="w-full p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
+                        />
+                        {state?.errors?.password && (<p className="w-full text-sm text-red-500">{state.errors.password}</p>)}
+                    </div>
+
+                    <LoginButton />
+                </form>
+                <p className="text-center" >Don't have an account? <Link href={"/signup"} className="text-blue-700" >Sign Up</Link></p>
+            </div>
+        </div>
+
+    )
+}
+
+
+
+function LoginButton() {
 
     const { pending } = useFormStatus()
 
@@ -28,37 +70,5 @@ function Login() {
             }
             { pending ? "Signing In" : "Sign In" }
         </button>
-    )
-}
-
-export default function LoginForm({ action }) {
-    return (
-        <div className="w-80 space-y-8" >
-            <h1 className="text-blue-950 text-4xl text-center font-bold" >
-                Welcome Back
-            </h1>
-            <div className="space-y-4" >
-                <form action={action} className="grid grid-cols-2 gap-3">
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        name="email"
-                        required
-                        className="col-span-2 p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Enter your password"
-                        name="password"
-                        required
-                        className="col-span-2 p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
-                    />
-
-                    <Login />
-                </form>
-                <p className="text-center" >Don't have an account? <Link href={"/signup"} className="text-blue-700" >Sign Up</Link></p>
-            </div>
-        </div>
-
     )
 }
