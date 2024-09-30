@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.user-table{
+    @apply w-full border border-collapse p-4
+}
+
+.user-table thead tr{
+    @apply bg-[#F5F6F8] border
+}
+
+.user-table tbody tr{
+    @apply border
+} 
+
+.user-table tr th:first-child,
+.user-table tr td:first-child{
+    @apply pl-4
+}
+
+.user-table tr th:last-child{
+    @apply !text-center
+}
+
+.user-table th{
+    @apply px-1 py-2 text-left font-normal text-sm text-gray-500
+}
+
+.user-table td{
+    @apply px-1 py-2 font-normal text-base text-gray-700
+}
