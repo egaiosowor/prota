@@ -7,7 +7,7 @@ export async function GET() {
     try {
         const { data } = await supabase
             .from('profiles')
-            .select(`first_name, last_name, email, title, gender, avatar_url`)
+            .select(`id, first_name, last_name, email, title, gender, avatar_url`)
 
         return Response.json(data)
     } catch (err) {
