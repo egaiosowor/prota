@@ -18,18 +18,3 @@ export const fetchProfile = async (user) => {
         alert('Error loading user data!')
     } 
 }
-
-export const getUsers = async () => {
-    const supabase = createClient()
-
-    try {
-    
-        const { data, error, status } = await supabase
-            .from('profiles')
-            .select(`first_name, last_name, title, phone, gender, role, avatar_url`)
-    
-        return data
-    } catch (error) {
-        alert('Error loading user data!')
-    } 
-}
