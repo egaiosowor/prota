@@ -1,4 +1,4 @@
-import { GoKebabHorizontal } from "react-icons/go";
+import UserActionDropdown from "./userActionDropdown"; 
 
 export default function UserTable({users}) {
     return (
@@ -26,7 +26,9 @@ export default function UserTable({users}) {
                                 <td>{user.email}</td>
                                 <td>{user.gender}</td>
                                 <td>{user.title}</td>
-                                <td><GoKebabHorizontal className="w-full inline-block cursor-pointer" /></td>
+                                <td className="relative" >
+                                    <UserActionDropdown id={user.id} />
+                                </td>
                             </tr>
                         ))
                     }
