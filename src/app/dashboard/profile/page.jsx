@@ -8,5 +8,5 @@ export default async function ProfilePage() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  return <ProfileForm user={user} />
+  return <ProfileForm id={user?.id} />
 }

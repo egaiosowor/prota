@@ -2,15 +2,31 @@
 
 import { createClient } from "./supabase/client"
 
-export const fetchProfile = async (user) => {
+
+
+export const getUsers = async () => {
+    const supabase = createClient()
+
+    try{
+        const { data } = await supabase
+            .from('profiles')
+            .select(`id, first_name, last_name, email, title, gender, avatar_url`)
+        return data
+    }catch(err){
+        console.log(err)
+    }
+}
+
+
+export const fetchProfile = async (id) => {
     const supabase = createClient()
 
     try {
 
         const { data, error, status } = await supabase
             .from('profiles')
-            .select(`first_name, last_name, title, phone, gender, role, avatar_url`)
-            .eq('id', user?.id)
+            .select(`first_name, last_name, email, title, phone, gender, role, avatar_url`)
+            .eq('id', id)
             .single()
 
         return data
@@ -18,3 +34,4 @@ export const fetchProfile = async (user) => {
         alert('Error loading user data!')
     } 
 }
+

@@ -20,36 +20,42 @@ export async function signOut() {
 }
 
 
-export async function updateProfile(id, formData) {
+export async function updateUser(formData) {
 
-    const {first_name, last_name, title, phone, gender, role} = Object.fromEntries(formData)
+
+    const {id, first_name, last_name, title, phone, gender, role} = Object.fromEntries(formData)
+
+    console.log(
+        "user data: ", {id, first_name, last_name, title, phone, gender, role}
+    )
     
-    const formatPhone = (phone) => {
-        return phone.split(" ").join("")
-    }
+    // const formatPhone = (phone) => {
+    //     return phone.split(" ").join("")
+    // }
 
      
-    try {
-        const supabase = createClient()
+    // try {
+    //     const supabase = createClient()
 
-        const { error } = await supabase.from('profiles').upsert({
-            id,
-            first_name,
-            last_name,
-            title,
-            phone: formatPhone(phone),
-            gender,
-            role,
-            avatar_url: "",
-            updated_at: new Date().toISOString(),
-        })
+    //     const { error } = await supabase.from('profiles').upsert({
+    //         id,
+    //         first_name,
+    //         last_name,
+    //         title,
+    //         phone: formatPhone(phone),
+    //         gender,
+    //         role,
+    //         avatar_url: "",
+    //         updated_at: new Date().toISOString(),
+    //     })
 
-        if (error) throw error
-        console.log('Profile updated!')
-    } catch (error) {
-        console.log('Error updating the data!')
-    }
+    //     if (error) throw error
+    //     console.log('Profile updated!')
+    // } catch (error) {
+    //     console.log('Error updating the data!')
+    // }
 
-    revalidatePath("/dashboard/profile");
-    redirect("/dashboard/profile");
+    // revalidatePath("/dashboard/profile");
+    // redirect("/dashboard/profile");
 }
+

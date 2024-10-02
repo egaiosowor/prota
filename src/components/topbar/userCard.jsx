@@ -9,7 +9,7 @@ const UserMenu = async () => {
     const {
         data: { user },
     } = await supabase.auth.getUser()
-    const profile = await fetchProfile(user)
+    const profile = await fetchProfile(user?.id)
 
     return (
         <Link href={'/dashboard/profile'} className="px-4 flex items-center space-x-2 text-gray-900 cursor-pointer">

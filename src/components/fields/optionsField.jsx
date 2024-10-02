@@ -1,6 +1,6 @@
 import toStartCase from "@/utils/toStartCase";
 
-const OptionsField = ({label, placeholder, name, isRequired, options, defaultValue}) => {
+const OptionsField = ({label, placeholder, name, isRequired, options, defaultValue,}) => {
     return(
         <div className="flex flex-col space-y-2" >
           <label htmlFor={name} className="text-sm text-gray-600 font-semibold">{label}</label>

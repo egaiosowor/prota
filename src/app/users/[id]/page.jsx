@@ -1,14 +1,117 @@
 "use client"
 
 import { useParams } from "next/navigation"
+import { useState, useEffect } from "react"
 
-export default function UserPage(){
+import Title from '@/types/title'
+import Roles from '@/types/roles'
+import Gender from '@/types/gender'
 
-    const {id} = useParams()
+import InputField from "@/components/fields/inputField"
+import PhoneField from '@/components/fields/phoneField'
+import OptionsField from "@/components/fields/optionsField"
 
-    return(
-        <div>
-            {id}
-        </div>
+import { updateUser } from "@/utils/actions"
+
+export default function UserPage() {
+
+    const { id } = useParams()
+
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        const getUser = async () => {
+            const res = await fetch(`/api/users/${id}`)
+
+            if (!res.ok) {
+                throw new Error("Error fetching user data")
+            }
+
+            const data = await res.json()
+            setUser(data)
+        }
+        getUser()
+    }, [])
+
+    return (
+        <form action={updateUser} className='space-y-8' >
+            <InputField
+                type={"hidden"}
+                name={"id"}
+                defaultValue={id}
+            />
+            <div className="grid grid-cols-2 gap-6" >
+                <div className='col-span-2 bg-white rounded-xl p-4 space-y-3'>
+                    <h4 className="text-sm text-blue-950 font-semibold" >Personal Information</h4>
+                    <div className="grid grid-cols-3 gap-4">
+                        <InputField
+                            type={"text"}
+                            label={'First Name*'}
+                            defaultValue={user?.first_name || ""}
+                            name={"first_name"}
+                            isRequired={true}
+                        />
+                        <InputField
+                            type={"text"}
+                            label={'Last Name*'}
+                            defaultValue={user?.last_name || ""}
+                            name={"last_name"}
+                            isRequired={true}
+                        />
+
+                        <InputField
+                            type={"email"}
+                            label={'Email*'}
+                            defaultValue={user?.email || ""}
+                            name={"email"}
+                            isRequired={true}
+                            disabled={true}
+                        />
+
+                        <PhoneField
+                            value={user?.phone || ""}
+                        />
+
+                        <OptionsField
+                            label={"Gender"}
+                            placeholder={"Select"}
+                            name={"gender"}
+                            isRequired={true}
+                            options={Gender}
+                            defaultValue={user?.gender || ""}
+                        />
+
+
+                    </div>
+                </div>
+                <div className="bg-white rounded-xl p-4 space-y-3" >
+                    <h4 className="text-sm text-blue-950 font-semibold" >Access Control</h4>
+                    <div className="grid grid-cols-2 gap-4">
+                        <OptionsField
+                            label={"Role"}
+                            placeholder={"Select"}
+                            name={"roles"}
+                            isRequired={true}
+                            options={Roles}
+                            defaultValue={user?.role || ""}
+                        />
+
+                        <OptionsField
+                            label={"Title"}
+                            placeholder={"Select"}
+                            name={"title"}
+                            isRequired={true}
+                            options={Title}
+                            defaultValue={user?.title || ""}
+                        />
+
+                    </div>
+                </div>
+            </div>
+            <button type='submit' className="text-white py-3 px-7 rounded-md bg-blue-700 hover:bg-blue-400">
+                Update
+            </button>
+        </form>
     )
 }
+

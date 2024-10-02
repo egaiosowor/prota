@@ -1,27 +1,9 @@
-'use client'
-
-import { useEffect, useState } from "react";
-
+import { getUsers } from "@/utils/data";
 import UserTable from "@/components/users/userTable";
 
-export default function UsersList(){
+export default async function UsersList(){
 
-    const [users, setUsers] = useState([])
-
-    useEffect(() => {
-        const getUsers = async () => {
-            const res = await fetch("/api/users")
-
-            if(!res.ok){
-                throw new Error("Network response was not ok")
-            }
-
-            const data = await res.json()
-            setUsers(data)
-        } 
-        getUsers()
-    }, [])
-
+    const users = await getUsers()
 
     return(
         <div>
