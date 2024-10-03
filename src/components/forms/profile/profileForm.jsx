@@ -9,61 +9,18 @@ import InputField from '../../fields/inputField'
 import PhoneField from '@/components/fields/phoneField'
 import OptionsField from '../../fields/optionsField'
 
+import BioForm from './bioForm'
+import PersonalInfoForm from './personalInfoForm'
+
 export default async function ProfileForm({ id }) {
 
   const user = await getUser(id)
 
   return (
-    <form action={updateUser} className='space-y-8' >
-      <InputField
-        type={"hidden"}
-        name={"id"}
-        defaultValue={id}
-      />
+    <div className='space-y-6' >
+      <BioForm user={user}/>
+      <PersonalInfoForm user={user}/>
       <div  className="grid grid-cols-2 gap-6" >
-        <div className='col-span-2 bg-white rounded-xl p-4 space-y-3'>
-          <h4 className="text-sm text-blue-950 font-semibold" >Personal Information</h4>
-          <div className="grid grid-cols-3 gap-4">
-            <InputField
-              type={"text"}
-              label={'First Name*'}
-              defaultValue={user?.first_name || ""}
-              name={"first_name"}
-              isRequired={true}
-            />
-            <InputField
-              type={"text"}
-              label={'Last Name*'}
-              defaultValue={user?.last_name || ""}
-              name={"last_name"}
-              isRequired={true}
-            />
-
-            <InputField
-              type={"email"}
-              label={'Email*'}
-              defaultValue={user?.email || ""}
-              name={"email"}
-              isRequired={true}
-              disabled={true}
-            />
-
-            <PhoneField
-              value={user?.phone || ""}
-            />
-
-            <OptionsField
-              label={"Gender"}
-              placeholder={"Select"}
-              name={"gender"}
-              isRequired={true}
-              options={Gender}
-              defaultValue={user?.gender || ""}
-            />
-
-
-          </div>
-        </div>
         <div className="bg-white rounded-xl p-4 space-y-3" >
           <h4 className="text-sm text-blue-950 font-semibold" >Access Control</h4>
           <div className="grid grid-cols-2 gap-4">
@@ -91,6 +48,6 @@ export default async function ProfileForm({ id }) {
       <button type='submit' className="text-white py-3 px-7 rounded-md bg-blue-700 hover:bg-blue-400">
         Update
       </button>
-    </form>
+    </div>
   )
 }

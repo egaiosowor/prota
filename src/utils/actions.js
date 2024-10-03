@@ -19,6 +19,11 @@ export async function signOut() {
 
 }
 
+export async function updatePersonalInfo(formData){
+    const {id, first_name, last_name, title, phone} = Object.fromEntries(formData)
+    console.log({id, first_name, last_name, title, phone})
+}
+
 
 export async function updateUser(formData) {
 

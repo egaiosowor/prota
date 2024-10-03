@@ -20,7 +20,7 @@ export default function UserTable({users}) {
                 <tbody>
                     {
                         users?.map((user) => (
-                            <tr>
+                            <tr key={user.email}>
                                 <td>{users.indexOf(user) + 1}</td>
                                 <td className="flex items-center space-x-1" ><img className="w-8 h-8 rounded-full" src={user.avatar_ur || "https://flowbite.com/docs/images/people/profile-picture-4.jpg"} alt={user.name} /><p>{`${user.first_name} ${user.last_name}`}</p></td>
                                 <td>{user.email}</td>
