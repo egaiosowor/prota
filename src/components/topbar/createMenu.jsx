@@ -18,11 +18,6 @@ const MenuItems = [
         path: "/dashboard/accounts",
     },
     {
-        title: "User",
-        icon: <FaRegUser />,
-        path: "/users/create",
-    },
-    {
         title: "Contact",
         icon: <IoPersonAddOutline />,
         path: "/dashboard/contacts",
