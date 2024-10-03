@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link";
+import { useState } from "react";
 
 import { GoPlus } from "react-icons/go";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
@@ -36,7 +39,7 @@ const CreateMenu = () => {
     return(
         <div>
             < GoPlus className="cursor-pointer" />
-            {/* <div className="py-3 px-2 space-y-2 bg-white rounded-lg shadow-md" >
+            <div className="py-3 px-2 space-y-2 bg-white rounded-lg shadow-md" >
                 <h4 className="ml-5 text-xs text-[#556476] font-semibold" >CREATE</h4>
                 <ul className="space-y-1" >
                     {MenuItems.map((item) => (
@@ -48,7 +51,7 @@ const CreateMenu = () => {
                         </li>
                     ))}
                 </ul>
-            </div> */}
+            </div>
         </div>
       
 

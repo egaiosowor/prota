@@ -1,23 +1,15 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react";
+
+import useDropdown from "@/hooks/useDropdown";
 
 import { FaUserEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { GoKebabHorizontal } from "react-icons/go";
 
 export default function UserActionDropdown({id}) {
-    const [dropDownOpen, setDropDownOpen] = useState(false)
-
-    const showDropdown = () => setDropDownOpen(true);
-    
-    const hideDropdown = (event) => {
-        // Ensure we don't hide the dropdown when hovering on the dropdown menu
-        if (!event.relatedTarget || !event.relatedTarget.closest('#dropdownMenu')) {
-            setDropDownOpen(false);
-        }
-    };
+    const {isOpen, showDropdown, hideDropdown} = useDropdown()
 
     return (
         <>
@@ -27,7 +19,7 @@ export default function UserActionDropdown({id}) {
                 onMouseLeave={hideDropdown}
             />
             {
-                dropDownOpen && (        
+                isOpen && (        
                     <div 
                         id="dropdownMenu" 
                         className="py-3 px-2 space-y-2 bg-white rounded-lg shadow-md absolute top-8 left-8 z-20" 
