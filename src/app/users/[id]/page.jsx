@@ -1,8 +1,3 @@
-"use client"
-
-import { useParams } from "next/navigation"
-import { useState, useEffect } from "react"
-
 import Title from '@/types/title'
 import Roles from '@/types/roles'
 import Gender from '@/types/gender'
@@ -11,34 +6,20 @@ import InputField from "@/components/fields/inputField"
 import PhoneField from '@/components/fields/phoneField'
 import OptionsField from "@/components/fields/optionsField"
 
+import { getUser } from "@/utils/data"
 import { updateUser } from "@/utils/actions"
 
-export default function UserPage() {
+export default async function UserPage({params}) {
 
-    const { id } = useParams()
-
-    const [user, setUser] = useState({})
-
-    useEffect(() => {
-        const getUser = async () => {
-            const res = await fetch(`/api/users/${id}`)
-
-            if (!res.ok) {
-                throw new Error("Error fetching user data")
-            }
-
-            const data = await res.json()
-            setUser(data)
-        }
-        getUser()
-    }, [])
+    const { id } = params
+    const user = await getUser(id)
 
     return (
         <form action={updateUser} className='space-y-8' >
             <InputField
                 type={"hidden"}
                 name={"id"}
-                defaultValue={id}
+                defaultValue={user?.id}
             />
             <div className="grid grid-cols-2 gap-6" >
                 <div className='col-span-2 bg-white rounded-xl p-4 space-y-3'>
@@ -90,7 +71,7 @@ export default function UserPage() {
                         <OptionsField
                             label={"Role"}
                             placeholder={"Select"}
-                            name={"roles"}
+                            name={"role"}
                             isRequired={true}
                             options={Roles}
                             defaultValue={user?.role || ""}

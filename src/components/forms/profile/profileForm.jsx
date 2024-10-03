@@ -2,27 +2,23 @@ import Title from '@/types/title'
 import Roles from '@/types/roles'
 import Gender from '@/types/gender'
 
+import { getUser } from '@/utils/data'
 import { updateUser } from '@/utils/actions'
-import { fetchProfile } from '@/utils/data'
 
 import InputField from '../../fields/inputField'
 import PhoneField from '@/components/fields/phoneField'
-
 import OptionsField from '../../fields/optionsField'
 
 export default async function ProfileForm({ id }) {
 
-
-  const profile = await fetchProfile(id)
-
-
+  const user = await getUser(id)
 
   return (
     <form action={updateUser} className='space-y-8' >
       <InputField
         type={"hidden"}
         name={"id"}
-        value={id}
+        defaultValue={id}
       />
       <div  className="grid grid-cols-2 gap-6" >
         <div className='col-span-2 bg-white rounded-xl p-4 space-y-3'>
@@ -31,14 +27,14 @@ export default async function ProfileForm({ id }) {
             <InputField
               type={"text"}
               label={'First Name*'}
-              defaultValue={profile?.first_name || ""}
+              defaultValue={user?.first_name || ""}
               name={"first_name"}
               isRequired={true}
             />
             <InputField
               type={"text"}
               label={'Last Name*'}
-              defaultValue={profile?.last_name || ""}
+              defaultValue={user?.last_name || ""}
               name={"last_name"}
               isRequired={true}
             />
@@ -46,14 +42,14 @@ export default async function ProfileForm({ id }) {
             <InputField
               type={"email"}
               label={'Email*'}
-              defaultValue={profile?.email || ""}
+              defaultValue={user?.email || ""}
               name={"email"}
               isRequired={true}
               disabled={true}
             />
 
             <PhoneField
-              value={profile?.phone || ""}
+              value={user?.phone || ""}
             />
 
             <OptionsField
@@ -62,7 +58,7 @@ export default async function ProfileForm({ id }) {
               name={"gender"}
               isRequired={true}
               options={Gender}
-              defaultValue={profile?.gender || ""}
+              defaultValue={user?.gender || ""}
             />
 
 
@@ -74,10 +70,10 @@ export default async function ProfileForm({ id }) {
             <OptionsField
               label={"Role"}
               placeholder={"Select"}
-              name={"roles"}
+              name={"role"}
               isRequired={true}
               options={Roles}
-              defaultValue={profile?.role || ""}
+              defaultValue={user?.role || ""}
             />
 
             <OptionsField
@@ -86,7 +82,7 @@ export default async function ProfileForm({ id }) {
               name={"title"}
               isRequired={true}
               options={Title}
-              defaultValue={profile?.title || "+"}
+              defaultValue={user?.title || "+"}
             />
 
           </div>

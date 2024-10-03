@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { fetchProfile } from "@/utils/data";
+import { getUser } from "@/utils/data";
 import { createClient } from '@/utils/supabase/server'
 
 const UserMenu = async () => {
@@ -9,7 +9,7 @@ const UserMenu = async () => {
     const {
         data: { user },
     } = await supabase.auth.getUser()
-    const profile = await fetchProfile(user?.id)
+    const profile = await getUser(user?.id)
 
     return (
         <Link href={'/dashboard/profile'} className="px-4 flex items-center space-x-2 text-gray-900 cursor-pointer">

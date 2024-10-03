@@ -1,7 +1,7 @@
 "use server"
 
+import { revalidateTag } from "next/cache"
 import { createClient } from "./supabase/client"
-
 
 
 export const getUsers = async () => {
@@ -17,21 +17,21 @@ export const getUsers = async () => {
     }
 }
 
-
-export const fetchProfile = async (id) => {
+export const getUser = async (id) => {
     const supabase = createClient()
 
-    try {
-
-        const { data, error, status } = await supabase
+    try{
+        const { data, error } = await supabase
             .from('profiles')
-            .select(`first_name, last_name, email, title, phone, gender, role, avatar_url`)
+            .select(`id, first_name, last_name, email, phone, role, title, gender, avatar_url`)
             .eq('id', id)
-            .single()
+            .single() 
 
         return data
-    } catch (error) {
-        alert('Error loading user data!')
-    } 
+    }catch(err){
+        console.log(err)
+    }
 }
+
+
 
