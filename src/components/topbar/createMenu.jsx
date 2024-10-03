@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import useDropdown from "@/hooks/useDropdown";
+import useDisclosure from "@/hooks/useDisclosure";
 
 import { GoPlus } from "react-icons/go";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
@@ -31,22 +31,22 @@ const MenuItems = [
 
 const CreateMenu = () => {
 
-    const {isOpen, showDropdown, hideDropdown} = useDropdown()
+    const {isOpen, onOpen, onClose} = useDisclosure()
 
     return(
         <div className="relative" >
             < GoPlus 
                 className="cursor-pointer"
-                onMouseEnter={showDropdown}
-                onMouseLeave={hideDropdown}
+                onMouseEnter={onOpen}
+                onMouseLeave={onClose}
             />
 
             {
                 isOpen && (
 
                     <div 
-                        onMouseEnter={showDropdown}
-                        onMouseLeave={hideDropdown} 
+                        onMouseEnter={onOpen}
+                        onMouseLeave={onClose} 
                         id="dropdownMenu" 
                         className="py-3 px-2 space-y-2 bg-white rounded-lg shadow-md absolute z-50" 
                     >
