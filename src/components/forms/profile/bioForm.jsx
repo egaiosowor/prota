@@ -1,6 +1,12 @@
 import toStartCase from "@/utils/toStartCase"
+import BioFormSkeleton from "@/components/skeletons/bioFormSkeleton"
 
 export default function BioForm({user}){
+
+    if(!user){
+        return <BioFormSkeleton/>
+    }
+
     return(
         <form className="flex items-center bg-white rounded-xl p-6 space-x-2" >
             <img
@@ -9,8 +15,8 @@ export default function BioForm({user}){
                 src="https://flowbite.com/docs/images/people/profile-picture-4.jpg" 
                 alt={user.first_name} />
             <div>
-                <h2 className="font-semibold text-xl text-blue-950" >{`${user?.first_name} ${user?.last_name}`}</h2>
-                <p className="text-gray-600" >{toStartCase(user?.title)}</p>
+                <h2 className="font-semibold text-xl text-blue-950" >{`${user.first_name} ${user.last_name}`}</h2>
+                <p className="text-gray-600" >{toStartCase(user.title)}</p>
             </div>
         </form>
     )
