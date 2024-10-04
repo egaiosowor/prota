@@ -2,7 +2,7 @@ const PhoneField = ({value}) => {
 
     return (
         <div className="flex flex-col space-y-2 w-full">   
-            <label className="text-sm text-gray-600 font-semibold" htmlFor="phone">Phone*</label>
+            <label className="text-sm text-gray-600 font-semibold" htmlFor="phone">Phone</label>
             <div className="relative flex">
              
                 {/* Phone Number Input */}
