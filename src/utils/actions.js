@@ -1,9 +1,11 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
 
 import { createClient } from '@/utils/supabase/server'
+
+import { personalInfoFormSchema } from './definitions'
 
 export async function signOut() {
     const supabase = createClient()
@@ -19,9 +21,17 @@ export async function signOut() {
 
 }
 
-export async function updatePersonalInfo(formData) {
+export async function updatePersonalInfo(state, formData) {
 
-    const {id, first_name, last_name, title, gender, phone} = Object.fromEntries(formData)
+    const { id, first_name, last_name, title, gender, phone } = Object.fromEntries(formData)
+    
+    const validatedFields = personalInfoFormSchema.safeParse({ first_name, last_name, title, gender, phone })    
+    
+    if(!validatedFields.success){
+        return{
+            errors: validatedFields.error.flatten().fieldErrors,
+        }
+    }
 
     const formatPhone = (phone) => {
         return phone.split(" ").join("")
@@ -53,40 +63,3 @@ export async function updatePersonalInfo(formData) {
     }
 
 }
-export async function updateUser(formData) {
-
-    const {id, first_name, last_name, title, phone, gender, role} = Object.fromEntries(formData)
-
-    const formatPhone = (phone) => {
-        return phone.split(" ").join("")
-    }
-     
-    try {
-        const supabase = createClient()
-
-        const { error } = await supabase.from('profiles')
-        .upsert({
-            id,
-            first_name,
-            last_name,
-            title,
-            phone: formatPhone(phone),
-            gender,
-            role,
-            avatar_url: "",
-            updated_at: new Date().toISOString(),
-        })
-        .eq('id', id)
-
-        revalidatePath("/users")
-        revalidatePath(`/users/${id}`)
-        revalidatePath("/dashboard/profile")
-
-        if (error) throw error
-        console.log('Profile updated!')
-    } catch (error) {
-        console.log(error.message)
-    }
-
-}
-

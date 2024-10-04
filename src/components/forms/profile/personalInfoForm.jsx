@@ -14,12 +14,14 @@ import EditButton from '@/components/ui/editButton';
 import PersonalInfoFormSkeleton from '@/components/skeletons/personalInfoFormSkeleton'
 
 import toStartCase from '@/utils/toStartCase'
+import {useFormState} from 'react-dom'
+import { useState } from 'react'
 import useDisclosure from '@/hooks/useDisclosure';
-
 import { updatePersonalInfo } from '@/utils/actions';
 
 
 export default function PersonalInfoForm({user}) {
+    const [state, formAction] = useFormState(updatePersonalInfo, undefined)
 
     const { isOpen, onToggle } = useDisclosure()
 
@@ -29,11 +31,11 @@ export default function PersonalInfoForm({user}) {
 
 
     return (
-        <form action={updatePersonalInfo} className='bg-white rounded-xl p-6 space-y-3'>
+        <form action={formAction} className='bg-white rounded-xl p-6 space-y-3'>
             <div className='flex justify-between items-start' >
                 <h4 className="text-base text-blue-950 font-semibold" >Personal Information</h4>
                 {
-                    !isOpen ? <EditButton onToggle={onToggle}/> : <SaveButton onToggle={onToggle} />
+                    !isOpen ? <EditButton onToggle={onToggle}/> : <SaveButton onToggle={onToggle}/>
                 }
 
             </div>
@@ -53,11 +55,11 @@ export default function PersonalInfoForm({user}) {
                 isOpen && (
                     <div className="w-[450px] grid grid-cols-2 gap-4">
                         <input type="hidden" name="id" value={user.id} />
-                        <InputField type={"text"} label={'First Name'} defaultValue={user.first_name || ""} name={"first_name"} isRequired={true}/>
-                        <InputField type={"text"} label={'Last Name'} defaultValue={user.last_name || ""} name={"last_name"} isRequired={true}/>
-                        <PhoneField value={user.phone || ""}/>
-                        <OptionsField label={"Gender"} placeholder={"Select"} name={"title"} isRequired={true} options={Gender} defaultValue={user.gender || "+"}/>
-                        <OptionsField label={"Title"} placeholder={"Select"} name={"title"} isRequired={true} options={Title} defaultValue={user.title || "+"}/>
+                        <InputField state={state} type={"text"} label={'First Name'} defaultValue={user.first_name || ""} name={"first_name"} isRequired={true}/>
+                        <InputField state={state} type={"text"} label={'Last Name'} defaultValue={user.last_name || ""} name={"last_name"} isRequired={true}/>
+                        <PhoneField state={state} value={user.phone || ""}/>
+                        <OptionsField state={state} label={"Gender"} placeholder={"Select"} name={"gender"} isRequired={true} options={Gender} defaultValue={user.gender || ""}/>
+                        <OptionsField state={state} label={"Title"} placeholder={"Select"} name={"title"} isRequired={true} options={Title} defaultValue={user.title || ""}/>
                     </div>
                 )
             }

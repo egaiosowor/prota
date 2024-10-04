@@ -5,7 +5,7 @@ export default function SaveButton({onToggle}) {
 
     const { pending } = useFormStatus()
 
-    useEffect(() => {
+    useEffect(()=>{
         if(!pending){
             onToggle()
         }
