@@ -19,12 +19,40 @@ export async function signOut() {
 
 }
 
-export async function updatePersonalInfo(formData){
-    const {id, first_name, last_name, title, phone} = Object.fromEntries(formData)
-    console.log({id, first_name, last_name, title, phone})
+export async function updatePersonalInfo(formData) {
+
+    const {id, first_name, last_name, title, gender, phone} = Object.fromEntries(formData)
+
+    const formatPhone = (phone) => {
+        return phone.split(" ").join("")
+    }
+     
+    try {
+        const supabase = createClient()
+
+        const { error } = await supabase.from('profiles')
+        .upsert({
+            id,
+            first_name,
+            last_name,
+            title,
+            gender,
+            phone: formatPhone(phone),
+            updated_at: new Date().toISOString(),
+        })
+        .eq('id', id)
+
+        revalidatePath("/users")
+        revalidatePath(`/users/${id}`)
+        revalidatePath("/dashboard/profile")
+
+        if (error) throw error
+        console.log('Profile updated!')
+    } catch (error) {
+        console.log(error.message)
+    }
+
 }
-
-
 export async function updateUser(formData) {
 
     const {id, first_name, last_name, title, phone, gender, role} = Object.fromEntries(formData)
