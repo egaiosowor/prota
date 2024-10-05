@@ -1,4 +1,4 @@
-import ZodError from "../zodError";
+import ZodError from "../ui/zodError";
 
 const InputField = ({label, placeholder, name, type, defaultValue, isRequired, disabled, state}) => {
     return(

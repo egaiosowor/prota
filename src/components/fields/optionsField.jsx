@@ -1,4 +1,4 @@
-import ZodError from "../zodError";
+import ZodError from "../ui/zodError";
 import toStartCase from "@/utils/toStartCase";
 
 const OptionsField = ({label, placeholder, name, isRequired, options, defaultValue, state}) => {

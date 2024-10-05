@@ -1,4 +1,4 @@
-import ZodError from "../zodError";
+import ZodError from "../ui/zodError";
 
 const PhoneField = ({value, state}) => {
 
