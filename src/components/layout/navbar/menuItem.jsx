@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function MenuItem({item, pathname}){
     return(
-        <li key={item.title} className="space-y-3" >
+        <li  className="space-y-3" >
             <h4 className="ml-7 text-xs text-[#556476] font-semibold" >{item.title}</h4>
             <ul className="space-y-1" >
                 {item.list.map((obj) => (

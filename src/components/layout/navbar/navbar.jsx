@@ -60,7 +60,7 @@ const Navbar = () => {
         <Link href={'/dashboard'} className="ml-7 font-bold text-green-700 text-xl">Logo</Link>
         <ul className="space-y-12" >
             {
-                MenuItems.map(item => <MenuItem item={item} pathname={pathname}/>
+                MenuItems.map(item => <MenuItem  key={item.title} item={item} pathname={pathname}/>
             )}
         </ul>
         <SignOutButton/>
