@@ -1,5 +1,5 @@
 import Navbar from "@/components/layout/navbar";
-import Topbar from "@/components/topbar/topbar";
+import Header from "@/components/header/header";
 
 
 const Layout = ({children}) => {
@@ -7,7 +7,7 @@ const Layout = ({children}) => {
         <div className="flex" >
             <Navbar />
             <div className="w-full">
-                <Topbar/>
+                <Header/>
                 <main className="p-7 h-full bg-[#F6F6F8]" >
                     {children}
                 </main>  
