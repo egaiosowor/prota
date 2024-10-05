@@ -1,7 +1,6 @@
 "use client"
 
-import Title from '@/types/title'
-import Gender from '@/types/gender'
+import { Title, Gender } from '@/libs/definitions'
 
 import InputField from '../../fields/inputField'
 import PhoneField from '@/components/fields/phoneField'
@@ -11,13 +10,12 @@ import DisplayField from '@/components/fields/displayField'
 import SaveButton from '@/components/ui/saveButton'
 import EditButton from '@/components/ui/editButton';
 
-import PersonalInfoFormSkeleton from '@/components/ui/skeletons/personalInfoFormSkeleton'
+import { PersonalInfoFormSkeleton } from '@/components/ui/skeletons'
 
-import toStartCase from '@/utils/toStartCase'
+import { toStartCase } from '@/libs/utils'
 import {useFormState} from 'react-dom'
-import { useState } from 'react'
 import useDisclosure from '@/hooks/useDisclosure';
-import { updatePersonalInfo } from '@/utils/actions';
+import { updatePersonalInfo } from '@/libs/actions'
 
 
 export default function PersonalInfoForm({user}) {

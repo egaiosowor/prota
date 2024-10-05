@@ -1,5 +1,24 @@
 import { z } from "zod"
 
+
+export const Title = {
+  SALES: "sales",
+  SUPPORT: "support",
+  MARKETING: "marketing"
+}
+
+
+export const Roles = {
+  ADMIN: "admin",
+  REGULAR: "regular"
+}
+
+export const Gender = {
+  MALE: "male",
+  FEMALE: "female"
+}
+
+
 export const signupFormSchema = z.object({
   first_name: z
     .string()

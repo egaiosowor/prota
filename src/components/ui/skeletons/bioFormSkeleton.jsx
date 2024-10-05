@@ -1,4 +1,4 @@
-export default function BioFormSkeleton(){
+export function BioFormSkeleton(){
     return(
         <div className="animate-pulse flex items-center bg-white rounded-xl p-6 space-x-2" >
             <div className="w-16 h-16 bg-gray-200  rounded-full" ></div>

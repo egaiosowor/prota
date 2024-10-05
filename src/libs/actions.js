@@ -3,10 +3,12 @@
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '@/libs/supabase/server'
 
-import { loginFormSchema } from '@/utils/definitions'
+import { loginFormSchema } from '@/libs/definitions'
 import { personalInfoFormSchema } from './definitions'
+
+
 
 
 export async function login(state, formData) {
@@ -91,6 +93,35 @@ export async function signOut() {
 
     redirect('/login')
 
+}
+
+export const getUsers = async () => {
+    const supabase = createClient()
+
+    try{
+        const { data } = await supabase
+            .from('profiles')
+            .select(`id, first_name, last_name, email, title, gender, avatar_url`)
+        return data
+    }catch(err){
+        console.log(err)
+    }
+}
+
+export const getUser = async (id) => {
+    const supabase = createClient()
+
+    try{
+        const { data, error } = await supabase
+            .from('profiles')
+            .select(`id, first_name, last_name, email, phone, role, title, gender, avatar_url`)
+            .eq('id', id)
+            .single() 
+
+        return data
+    }catch(err){
+        console.log(err)
+    }
 }
 
 export async function updatePersonalInfo(state, formData) {

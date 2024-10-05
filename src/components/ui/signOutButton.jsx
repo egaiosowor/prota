@@ -1,5 +1,5 @@
 "use client"
-import { signOut } from "@/utils/actions"
+import { signOut } from "@/libs/actions";
 import { LuLogOut } from "react-icons/lu";
 
 export default function SignOutButton(){

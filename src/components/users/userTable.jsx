@@ -1,4 +1,5 @@
 import ActionMenu from "../ui/actionMenu"; 
+import { toStartCase } from "@/libs/utils";
 
 export default function UserTable({users}) {
     return (
@@ -24,8 +25,8 @@ export default function UserTable({users}) {
                                 <td>{users.indexOf(user) + 1}</td>
                                 <td className="flex items-center space-x-1" ><img className="w-8 h-8 rounded-full" src={user.avatar_ur || "https://flowbite.com/docs/images/people/profile-picture-4.jpg"} alt={user.name} /><p>{`${user.first_name} ${user.last_name}`}</p></td>
                                 <td>{user.email}</td>
-                                <td>{user.gender}</td>
-                                <td>{user.title}</td>
+                                <td>{toStartCase(user.gender)}</td>
+                                <td>{toStartCase(user.title)}</td>
                                 <td className="relative" >
                                     <ActionMenu id={user.id} />
                                 </td>

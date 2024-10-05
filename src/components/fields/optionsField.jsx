@@ -1,5 +1,5 @@
 import ZodError from "../ui/zodError";
-import toStartCase from "@/utils/toStartCase";
+import { toStartCase } from "@/libs/utils";
 
 const OptionsField = ({label, placeholder, name, isRequired, options, defaultValue, state}) => {
     return(
