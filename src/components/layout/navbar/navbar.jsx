@@ -9,8 +9,8 @@ import { FaRegUser } from "react-icons/fa";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { RiGroupLine } from "react-icons/ri";
 
-import MenuItem from "./menuItem";
 import SignOutButton from "../../ui/signOutButton";
+import MenuList from "./menuList";
 
 
 const MenuItems = [
@@ -60,9 +60,13 @@ const Navbar = () => {
         <Link href={'/dashboard'} className="ml-7 font-bold text-green-700 text-xl">Logo</Link>
         <ul className="space-y-12" >
             {
-                MenuItems.map(item => <MenuItem  key={item.title} item={item} pathname={pathname}/>
-            )}
-        </ul>
+                MenuItems.map(item => (
+                    <li className="space-y-3" >
+                        <h4 className="ml-7 text-xs text-[#556476] font-semibold" >{item.title}</h4>
+                        <MenuList menu_list={item.list} pathname={pathname} />
+                    </li>
+                ))}
+            </ul>
         <SignOutButton/>
         </nav>
     ) 
