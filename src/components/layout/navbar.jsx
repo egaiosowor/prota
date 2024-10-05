@@ -9,7 +9,7 @@ import { FaRegUser } from "react-icons/fa";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { RiGroupLine } from "react-icons/ri";
 
-import SignOutButton from "./ui/signOutButton";
+import SignOutButton from "../ui/signOutButton";
 
 
 const MenuItems = [
