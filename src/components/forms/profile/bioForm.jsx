@@ -1,5 +1,5 @@
 import toStartCase from "@/utils/toStartCase"
-import BioFormSkeleton from "@/components/skeletons/bioFormSkeleton"
+import BioFormSkeleton from "@/components/ui/skeletons/bioFormSkeleton"
 
 export default function BioForm({user}){
 

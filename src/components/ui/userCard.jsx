@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { getUser } from "@/utils/data";
 import { createClient } from '@/utils/supabase/server'
-import UserCardSkeleton from "../skeletons/userCardSkeleton";
+import UserCardSkeleton from "./skeletons/userCardSkeleton";
 
 const UserMenu = async () => {
     const supabase = createClient()

@@ -11,7 +11,7 @@ import DisplayField from '@/components/fields/displayField'
 import SaveButton from '@/components/ui/saveButton'
 import EditButton from '@/components/ui/editButton';
 
-import PersonalInfoFormSkeleton from '@/components/skeletons/personalInfoFormSkeleton'
+import PersonalInfoFormSkeleton from '@/components/ui/skeletons/personalInfoFormSkeleton'
 
 import toStartCase from '@/utils/toStartCase'
 import {useFormState} from 'react-dom'
