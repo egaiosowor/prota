@@ -1,5 +1,5 @@
-import CreateMenu from "./createMenu"
-import UserCard from "./userCard";
+import CreateMenu from "../ui/createMenu"
+import UserCard from "../ui/userCard";
 
 const Header = () => {
     return(
