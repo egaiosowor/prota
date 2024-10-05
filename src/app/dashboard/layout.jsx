@@ -1,5 +1,5 @@
 import Navbar from "@/components/layout/navbar";
-import Header from "@/components/header/header";
+import Header from "@/components/layout/header";
 
 
 const Layout = ({children}) => {
