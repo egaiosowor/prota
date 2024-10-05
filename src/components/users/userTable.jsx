@@ -1,4 +1,4 @@
-import UserActionDropdown from "./userActionDropdown"; 
+import ActionMenu from "../ui/actionMenu"; 
 
 export default function UserTable({users}) {
     return (
@@ -27,7 +27,7 @@ export default function UserTable({users}) {
                                 <td>{user.gender}</td>
                                 <td>{user.title}</td>
                                 <td className="relative" >
-                                    <UserActionDropdown id={user.id} />
+                                    <ActionMenu id={user.id} />
                                 </td>
                             </tr>
                         ))
