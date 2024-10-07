@@ -1,7 +1,7 @@
 import { toStartCase } from "@/lib/utils"
 import { BioFormSkeleton } from "@/components/ui/skeletons"
 
-export default function BioForm({user}){
+export default function UserBio({user}){
 
     if(!user){
         return <BioFormSkeleton/>

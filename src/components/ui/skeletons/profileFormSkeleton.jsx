@@ -1,4 +1,4 @@
-export function PersonalInfoFormSkeleton(){
+export function ProfileFormSkeleton(){
     return(
 
         <div className="bg-white rounded-xl p-6 space-y-3" >

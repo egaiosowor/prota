@@ -1,3 +1,3 @@
 export { BioFormSkeleton } from './bioFormSkeleton'
 export { UserCardSkeleton } from './userCardSkeleton'
-export { PersonalInfoFormSkeleton } from './personalInfoFormSkeleton'
+export { ProfileFormSkeleton } from './profileFormSkeleton'

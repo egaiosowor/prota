@@ -47,7 +47,7 @@ export const loginFormSchema = z.object({
 });
 
 
-export const personalInfoFormSchema = z.object({
+export const profileFormSchema = z.object({
   first_name: z
     .string()
     .min(2, { message: 'First Name must be at least 2 characters long.' })

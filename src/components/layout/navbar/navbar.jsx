@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { signOut } from "@/lib/actions";
+
+import { LuLogOut } from "react-icons/lu";  
 import { LuLayoutDashboard } from "react-icons/lu";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { FaRegUser } from "react-icons/fa";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { RiGroupLine } from "react-icons/ri";
 
-import SignOutButton from "../../ui/signOutButton";
 import MenuList from "./menuList";
 
 
@@ -61,10 +63,7 @@ const Navbar = () => {
         <ul className="space-y-12" >
             {
                 MenuItems.map(item => (
-                    <li className="space-y-3" >
-                        <h4 className="ml-7 text-xs text-[#556476] font-semibold" >{item.title}</h4>
-                        <MenuList menu_list={item.list} pathname={pathname} />
-                    </li>
+                    <MenuList menu_item={item} pathname={pathname}/>
                 ))}
             </ul>
         <SignOutButton/>
@@ -73,3 +72,19 @@ const Navbar = () => {
 }
 
 export default Navbar;
+
+  
+
+
+function SignOutButton(){
+    return(
+        <button onClick={()=>signOut()} className={`flex space-x-2 items-center text-[#556476] py-3 pl-7 pr-14 hover:text-[#4A58EC] hover:bg-[#F4F7FF]`}>
+            <LuLogOut />
+            <p>Logout</p>
+        </button>
+    )
+}
+
+
+
+

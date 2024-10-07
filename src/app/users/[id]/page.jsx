@@ -1,4 +1,4 @@
-import ProfileForm from '@/components/forms/profile/profileForm'
+import ProfileForm from '@/components/forms/profileForm'
 
 export default async function UserPage({params}) {
 

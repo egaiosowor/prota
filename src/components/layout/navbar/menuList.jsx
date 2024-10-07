@@ -1,13 +1,16 @@
 import MenuItem from "./menuItem"
 
-export default function MenuList({menu_list, pathname}){
+export default function MenuList({menu_item, pathname}){
     return(
-        <ul className="space-y-1" >
-            {menu_list.map((item) => (
-                <li key={item.path} >
-                    <MenuItem item={item} pathname={pathname} />
-                </li>
-            ))}
-        </ul>
+        <li className="space-y-3" >
+            <h4 className="ml-7 text-xs text-[#556476] font-semibold" >{menu_item.title}</h4>
+            <ul className="space-y-1" >
+                {menu_item.list.map((item) => (
+                    <li key={item.path} >
+                        <MenuItem item={item} pathname={pathname} />
+                    </li>
+                ))}
+            </ul>
+        </li>
     )
 }

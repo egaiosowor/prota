@@ -1,11 +1,17 @@
 import { MdEdit } from "react-icons/md";
-
+import { Button, buttonVariants } from "./button";
 
 export default function EditButton({onToggle}){
     return(
-        <div onClick={onToggle} className='px-2 py-1 flex items-center space-x-1 text-gray-600 border border-gray-400 rounded-md cursor-pointer' >
-            <MdEdit />
-            <p className='text-sm' >Edit</p>
-        </div>
+        <Button
+            onClick={(e)=>{
+                e.preventDefault
+                onToggle()
+            }}
+            className={buttonVariants({variant:"outline"})}
+        >
+            <MdEdit className="mr-2" />
+            Edit
+        </Button>
     )
 }

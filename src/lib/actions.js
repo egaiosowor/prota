@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 
 import { loginFormSchema } from '@/lib/definitions'
-import { personalInfoFormSchema } from './definitions'
+import { profileFormSchema } from './definitions'
 
 
 
@@ -124,11 +124,11 @@ export const getUser = async (id) => {
     }
 }
 
-export async function updatePersonalInfo(state, formData) {
+export async function updateProfile(state, formData) {
 
     const { id, first_name, last_name, title, gender, phone } = Object.fromEntries(formData)
     
-    const validatedFields = personalInfoFormSchema.safeParse({ first_name, last_name, title, gender, phone })    
+    const validatedFields = profileFormSchema.safeParse({ first_name, last_name, title, gender, phone })    
     
     if(!validatedFields.success){
         return{
