@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { signUp } from "@/utils/actions"
+import { signUp } from "@/lib/actions"
 import { useFormStatus, useFormState } from 'react-dom'
 
 

@@ -1,4 +1,4 @@
-import { getUser } from '@/libs/actions'
+import { getUser } from '@/lib/actions'
 
 import BioForm from './bioForm'
 import PersonalInfoForm from './personalInfoForm'

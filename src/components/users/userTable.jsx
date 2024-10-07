@@ -1,5 +1,5 @@
 import ActionMenu from "../ui/actionMenu"; 
-import { toStartCase } from "@/libs/utils";
+import { toStartCase } from "@/lib/utils";
 
 export default function UserTable({users}) {
     return (

@@ -1,4 +1,4 @@
-import { toStartCase } from "@/libs/utils"
+import { toStartCase } from "@/lib/utils"
 import { BioFormSkeleton } from "@/components/ui/skeletons"
 
 export default function BioForm({user}){

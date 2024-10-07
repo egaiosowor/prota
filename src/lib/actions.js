@@ -3,9 +3,9 @@
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 
-import { createClient } from '@/libs/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 
-import { loginFormSchema } from '@/libs/definitions'
+import { loginFormSchema } from '@/lib/definitions'
 import { personalInfoFormSchema } from './definitions'
 
 
