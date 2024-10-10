@@ -63,7 +63,7 @@ const Navbar = () => {
         <ul className="space-y-12" >
             {
                 MenuItems.map(item => (
-                    <MenuList menu_item={item} pathname={pathname}/>
+                    <MenuList key={item.title} menu_item={item} pathname={pathname}/>
                 ))}
             </ul>
         <SignOutButton/>
