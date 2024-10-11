@@ -1,3 +1,8 @@
+// type ZodErrorProps = {
+//     state: { errors: {} }
+//     name: string
+// }
+
 export default function ZodError({state, name}){
     return(
         <>

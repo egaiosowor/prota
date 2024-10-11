@@ -6,7 +6,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import Loader from "@/components/ui/loader"
 
 
-export default function AuthButton({name}) {
+export default function AuthButton({name}: { name: string }) {
 
     const { pending } = useFormStatus()
 

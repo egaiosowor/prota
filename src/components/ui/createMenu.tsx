@@ -6,7 +6,6 @@ import useDisclosure from "@/hooks/useDisclosure";
 
 import { GoPlus } from "react-icons/go";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
-import { FaRegUser } from "react-icons/fa";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { RiGroupLine } from "react-icons/ri";
 

@@ -8,7 +8,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { GoKebabHorizontal } from "react-icons/go";
 
-export default function ActionMenu({id}) {
+export default function ActionMenu({id}: {  id: string}) {
     const {isOpen, onOpen, onClose} = useDisclosure()
 
     return (

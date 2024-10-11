@@ -15,7 +15,7 @@ import { RiGroupLine } from "react-icons/ri";
 import MenuList from "./menuList";
 
 
-const MenuItems = [
+const menu_list= [
     {
         title: "MENU",
         list: [
@@ -62,7 +62,7 @@ const Navbar = () => {
         <Link href={'/dashboard'} className="ml-7 font-bold text-green-700 text-xl">Logo</Link>
         <ul className="space-y-12" >
             {
-                MenuItems.map(item => (
+                menu_list.map(item => (
                     <MenuList key={item.title} menu_item={item} pathname={pathname}/>
                 ))}
             </ul>

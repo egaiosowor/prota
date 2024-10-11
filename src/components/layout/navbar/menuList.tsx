@@ -1,6 +1,22 @@
+import React from "react";
 import MenuItem from "./menuItem"
 
-export default function MenuList({menu_item, pathname}){
+
+type MenuListProps = {
+    menu_item: {
+        title: string
+        list: {
+            title: string
+            icon: React.ReactNode
+            path: string
+        }[]
+    }
+    pathname: string;
+}
+
+
+
+export default function MenuList({menu_item, pathname}: MenuListProps){
     return(
         <li className="space-y-3" >
             <h4 className="ml-7 text-xs text-[#556476] font-semibold" >{menu_item.title}</h4>

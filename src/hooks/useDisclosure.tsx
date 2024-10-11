@@ -6,7 +6,7 @@ export default function useDisclosure(){
 
     const onOpen = useCallback(() => setIsOpen(true), [])
 
-    const onClose = useCallback((event) => {
+    const onClose = useCallback((event: any) => {
         // Ensure we don't hide the dropdown when hovering on the dropdown menu
         if (!event.relatedTarget || !event.relatedTarget.closest('#dropdownMenu')) {
             setIsOpen(false);

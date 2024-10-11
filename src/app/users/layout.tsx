@@ -1,8 +1,9 @@
+import React from "react";
 import Navbar from "@/components/layout/navbar/navbar";
 import Header from "@/components/layout/header";
 
 
-const Layout = ({children}) => {
+const Layout = ({children}: { children: React.ReactNode }) => {
     return(
         <div className="flex" >
             <Navbar />

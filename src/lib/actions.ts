@@ -5,13 +5,14 @@ import { revalidatePath } from 'next/cache'
 
 import { createClient } from '@/lib/supabase/server'
 
-import { loginFormSchema } from '@/lib/definitions'
-import { profileFormSchema } from './definitions'
+import { 
+    signupFormSchema, 
+    loginFormSchema, 
+    profileFormSchema 
+} from '@/lib/definitions'
 
 
-
-
-export async function login(state, formData) {
+export async function login(state: undefined, formData: FormData) {
     const supabase = createClient()
 
     const validatedFields = loginFormSchema.safeParse({
@@ -41,7 +42,7 @@ export async function login(state, formData) {
 }
 
 
-export async function signUp(state, formData) {
+export async function signUp(state: undefined, formData: FormData) {
     const supabase = createClient()
     
     const validatedFields = signupFormSchema.safeParse({
@@ -101,20 +102,20 @@ export const getUsers = async () => {
     try{
         const { data } = await supabase
             .from('profiles')
-            .select(`id, first_name, last_name, email, title, gender, avatar_url`)
+            .select(`id, first_name, last_name, email, phone, title, gender, avatar_url`)
         return data
     }catch(err){
         console.log(err)
     }
 }
 
-export const getUser = async (id) => {
+export const getUser = async (id: string) => {
     const supabase = createClient()
 
     try{
         const { data, error } = await supabase
             .from('profiles')
-            .select(`id, first_name, last_name, email, phone, role, title, gender, avatar_url`)
+            .select(`id, first_name, last_name, email, phone, title, gender, avatar_url`)
             .eq('id', id)
             .single() 
 
@@ -124,7 +125,7 @@ export const getUser = async (id) => {
     }
 }
 
-export async function updateProfile(state, formData) {
+export async function updateProfile(state: undefined, formData: FormData) {
 
     const { id, first_name, last_name, title, gender, phone } = Object.fromEntries(formData)
     

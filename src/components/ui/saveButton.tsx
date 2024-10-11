@@ -4,7 +4,11 @@ import { useFormStatus } from 'react-dom'
 import Loader from './loader'
 import { Button, buttonVariants } from './button'
 
-export default function SaveButton({onToggle}) {
+type SaveButtonProps = {
+    onToggle: () => void
+}
+
+export default function SaveButton({onToggle}: SaveButtonProps) {
 
     const { pending } = useFormStatus()
 

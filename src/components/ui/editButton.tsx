@@ -1,7 +1,11 @@
 import { MdEdit } from "react-icons/md";
 import { Button, buttonVariants } from "./button";
 
-export default function EditButton({onToggle}){
+type EditButtonProps = {
+    onToggle: () => void
+}
+
+export default function EditButton({onToggle}: EditButtonProps){
     return(
         <Button
             onClick={(e)=>{

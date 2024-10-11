@@ -1,21 +1,32 @@
 import { z } from "zod"
 
 
-export const Title = {
-  SALES: "sales",
-  SUPPORT: "support",
-  MARKETING: "marketing"
+export enum Title {
+  SALES= "sales",
+  SUPPORT= "support",
+  MARKETING= "marketing"
+}
+
+export enum Roles {
+  ADMIN= "admin",
+  REGULAR= "regular"
+}
+
+export enum Gender {
+  MALE= "male",
+  FEMALE= "female"
 }
 
 
-export const Roles = {
-  ADMIN: "admin",
-  REGULAR: "regular"
-}
-
-export const Gender = {
-  MALE: "male",
-  FEMALE: "female"
+export type User = {
+  id: string
+  first_name: string
+  last_name: string
+  email: string
+  phone: string
+  title: string
+  gender: string
+  avatar_url: string
 }
 
 

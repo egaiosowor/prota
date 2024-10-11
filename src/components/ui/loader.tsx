@@ -1,4 +1,4 @@
-export default function Loader({fill}){
+export default function Loader({fill}: { fill: string }){
     return(
         <div role="status" className="mr-2">
             <svg aria-hidden="true" className={`w-5 h-5 text-gray-200 animate-spin ${fill}`} viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

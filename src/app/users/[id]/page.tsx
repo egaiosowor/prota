@@ -3,7 +3,10 @@ import ProfileForm from '@/components/forms/profileForm'
 
 import { getUser } from '@/lib/actions'
 
-export default async function UserPage({ params }) {
+export default async function UserPage({ params }: { 
+    params: 
+        { id: string } 
+    } ) {
 
     const { id } = params
     const userData = await getUser(id)

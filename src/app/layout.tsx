@@ -1,11 +1,14 @@
 import "./globals.css";
+import React from 'react'
 
 export const metadata = {
   title: "Test App",
   description: "This is a test app",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { 
+  children: React.ReactNode 
+}) {
   return (
     <html lang="en">
       <head>
