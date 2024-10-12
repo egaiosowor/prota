@@ -29,8 +29,37 @@ export type User = {
   avatar_url: string
 }
 
+export type LoginFormState = {
+  errors?: {
+    email?: string[];
+    password?: string[];
+  };
+  message?: string;
+} | undefined
 
-export const signupFormSchema = z.object({
+export type SignupFormState = {
+  errors?: {
+    first_name?: string[];
+    last_name?: string[];
+    email?: string[];
+    password?: string[];
+  };
+  message?: string;
+} | undefined
+
+export type ProfileFormState = {
+  errors?: {
+    first_name?: string[];
+    last_name?: string[];
+    title?: string[];
+    gender?: string[];
+    phone?: string[];
+  };
+  message?: string;
+} | undefined
+
+
+export const SignupFormSchema = z.object({
   first_name: z
     .string()
     .min(2, { message: 'First Name must be at least 2 characters long.' })
@@ -52,13 +81,13 @@ export const signupFormSchema = z.object({
 });
 
 
-export const loginFormSchema = z.object({
+export const LoginFormSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email.' }),
   password: z.string().min(1, { message: 'Password field must not be empty.' }),
 });
 
 
-export const profileFormSchema = z.object({
+export const ProfileFormSchema = z.object({
   first_name: z
     .string()
     .min(2, { message: 'First Name must be at least 2 characters long.' })

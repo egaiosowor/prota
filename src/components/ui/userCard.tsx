@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getUser } from "@/lib/actions";
+import { getUser } from "@/actions/actions";
 import { createClient } from '@/lib/supabase/server'
 import { UserCardSkeleton } from "./skeletons";
 

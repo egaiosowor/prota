@@ -6,16 +6,23 @@ import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 
 import { 
-    signupFormSchema, 
-    loginFormSchema, 
-    profileFormSchema 
+    SignupFormState,
+    LoginFormState,
+    ProfileFormState,
+    SignupFormSchema, 
+    LoginFormSchema, 
+    ProfileFormSchema, 
 } from '@/lib/definitions'
 
 
-export async function login(state: undefined, formData: FormData) {
+
+export async function login(
+    state: LoginFormState, 
+    formData: FormData
+):Promise<LoginFormState> {
     const supabase = createClient()
 
-    const validatedFields = loginFormSchema.safeParse({
+    const validatedFields = LoginFormSchema.safeParse({
         email: formData.get("email"),
         password: formData.get("password"),
     })
@@ -42,10 +49,13 @@ export async function login(state: undefined, formData: FormData) {
 }
 
 
-export async function signUp(state: undefined, formData: FormData) {
+export async function signUp(
+    state: SignupFormState, 
+    formData: FormData
+):Promise<SignupFormState>{
     const supabase = createClient()
     
-    const validatedFields = signupFormSchema.safeParse({
+    const validatedFields = SignupFormSchema.safeParse({
         first_name: formData.get('first_name'),
         last_name: formData.get('last_name'),
         email: formData.get('email'),
@@ -93,43 +103,16 @@ export async function signOut() {
     }
 
     redirect('/login')
-
 }
 
-export const getUsers = async () => {
-    const supabase = createClient()
 
-    try{
-        const { data } = await supabase
-            .from('profiles')
-            .select(`id, first_name, last_name, email, phone, title, gender, avatar_url`)
-        return data
-    }catch(err){
-        console.log(err)
-    }
-}
-
-export const getUser = async (id: string) => {
-    const supabase = createClient()
-
-    try{
-        const { data, error } = await supabase
-            .from('profiles')
-            .select(`id, first_name, last_name, email, phone, title, gender, avatar_url`)
-            .eq('id', id)
-            .single() 
-
-        return data
-    }catch(err){
-        console.log(err)
-    }
-}
-
-export async function updateProfile(state: undefined, formData: FormData) {
-
+export async function updateProfile(
+    state: ProfileFormState, 
+    formData: FormData
+):Promise<ProfileFormState>{
     const { id, first_name, last_name, title, gender, phone } = Object.fromEntries(formData)
     
-    const validatedFields = profileFormSchema.safeParse({ first_name, last_name, title, gender, phone })    
+    const validatedFields = ProfileFormSchema.safeParse({ first_name, last_name, title, gender, phone })    
     
     if(!validatedFields.success){
         return{
@@ -137,7 +120,7 @@ export async function updateProfile(state: undefined, formData: FormData) {
         }
     }
 
-    const formatPhone = (phone) => {
+    const formatPhone = (phone: string) => {
         return phone.split(" ").join("")
     }
      
@@ -151,7 +134,7 @@ export async function updateProfile(state: undefined, formData: FormData) {
             last_name,
             title,
             gender,
-            phone: formatPhone(phone),
+            phone: formatPhone(phone as string),
             updated_at: new Date().toISOString(),
         })
         .eq('id', id)
@@ -162,7 +145,7 @@ export async function updateProfile(state: undefined, formData: FormData) {
 
         if (error) throw error
         console.log('Profile updated!')
-    } catch (error) {
+    } catch (error: any) {
         console.log(error.message)
     }
 

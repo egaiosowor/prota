@@ -10,13 +10,13 @@ import { ProfileFormSkeleton } from '@/components/ui/skeletons'
 import { Title, Gender } from '@/lib/definitions'
 import type { User } from '@/lib/definitions';
 import { toStartCase } from '@/lib/utils'
-import { updateProfile } from '@/lib/actions'
+import { updateProfile } from '@/actions/actions'
 
 import {useFormState} from 'react-dom'
 import useDisclosure from '@/hooks/useDisclosure';
 
 
-export default function ProfileForm({user}: { user: User }) {
+export default function ProfileForm({user}: { user: User | null }) {
     const [state, formAction] = useFormState(updateProfile, undefined)
 
     const { isOpen, onToggle } = useDisclosure()

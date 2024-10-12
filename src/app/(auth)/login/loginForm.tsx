@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import { login } from "@/lib/actions"
+import { login } from "@/actions/actions"
 import AuthButton from "../authButton"
 
 import { useFormState } from 'react-dom'

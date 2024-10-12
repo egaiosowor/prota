@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import { signUp } from "@/lib/actions"
+import { signUp } from "@/actions/actions"
 
 import AuthButton from "../authButton"
 
