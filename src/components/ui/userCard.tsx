@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getUser } from "@/actions/actions";
+import { getUser } from "@/lib/db";
 import { createClient } from '@/lib/supabase/server'
 import { UserCardSkeleton } from "./skeletons";
 
@@ -10,6 +10,7 @@ const UserMenu = async () => {
     const {
         data: { user },
     } = await supabase.auth.getUser()
+    
     const profile = await getUser(user?.id)
 
     if(!profile){

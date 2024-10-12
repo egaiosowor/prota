@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import type { User } from './definitions'
 
-export const getUser = async (id: string): Promise<User | null> => {
+export const getUser = async (id: string | undefined): Promise<User | null> => {
     const supabase = createClient()
 
     try{

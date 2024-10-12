@@ -1,7 +1,7 @@
 import UserBio from '@/components/ui/userBio'
 import ProfileForm from '@/components/forms/profileForm'
 
-import { getUser } from '@/actions/actions'
+import { getUser } from '@/lib/db'
 
 export default async function UserPage({ params }: { 
     params: 
