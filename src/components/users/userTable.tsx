@@ -2,7 +2,7 @@ import ActionMenu from "../ui/actionMenu";
 import { toStartCase } from "@/lib/utils";
 import type { User } from "@/lib/definitions";
 
-export default function UserTable({users}: { users: User[] }) {
+export default function UserTable({users}: { users: User[] | null }) {
     return (
         <div className="bg-white border rounded-xl p-4 space-y-4">
             <h4>
