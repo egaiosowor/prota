@@ -5,13 +5,13 @@ export const getUser = async (id: string | undefined): Promise<User | null> => {
     const supabase = createClient()
 
     try{
-        const { data, error } = await supabase
+        const { data: user} = await supabase
             .from('profiles')
             .select(`id, first_name, last_name, email, phone, title, gender, avatar_url`)
             .eq('id', id)
             .single() 
 
-        return data as User
+        return user as User
     }catch(err){
         console.log(err)
         return null
@@ -19,14 +19,31 @@ export const getUser = async (id: string | undefined): Promise<User | null> => {
 }
 
 
-export const getUsers = async (): Promise<User[] | null> => {
+export const getUsers = async (query?: string): Promise<User[] | null> => {
     const supabase = createClient()
 
+    if(query){
+        try{
+            const { data: users } = await supabase
+                .from('profiles')
+                .select(`id, first_name, last_name, email, phone, title, gender, avatar_url`)
+                .textSearch('first_name', query, {
+                    type: 'phrase',
+                    config: 'english'
+                })
+
+            return users as User[]
+        }catch(err){
+            console.log(err)
+            return null
+        }
+    }
+
     try{
-        const { data } = await supabase
+        const { data: users } = await supabase
             .from('profiles')
             .select(`id, first_name, last_name, email, phone, title, gender, avatar_url`)
-        return data as User[]
+        return users as User[]
     }catch(err){ 
         console.log(err)
         return null
