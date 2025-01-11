@@ -16,15 +16,14 @@ export default async function UsersList({
     page?: string;
   };
 }) {
-  const users = await getUsers(searchParams.query);
+  const { query } = await searchParams;
+  const users = await getUsers(query);
 
   return (
     <div className="bg-white border rounded-xl p-4 space-y-4">
       <Search />
       <UsersTable users={users} />
-      {searchParams.query && (
-        <p className="text-sm">Showing {users?.length} users</p>
-      )}
+      {query && <p className="text-sm">Showing {users?.length} users</p>}
       <Pagination />
     </div>
   );
