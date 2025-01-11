@@ -18,6 +18,7 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"
         />
+        <link rel="icon" href="/assets/favicon.ico" />
       </head>
       <body className="">{children}</body>
     </html>
