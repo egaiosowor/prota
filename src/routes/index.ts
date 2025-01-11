@@ -11,11 +11,43 @@ export function getSignupRoute() {
 }
 
 // ====================================================================
-// DASHBOARD ROUTES
+// MENU ROUTES
 //=====================================================================
 
 export function getDashboardRoute() {
   return "/dashboard";
+}
+
+export function getAccountsRoute() {
+  return "/accounts";
+}
+
+// ====================================================================
+// LEADS ROUTES
+//=====================================================================
+
+export function getContactsRoute() {
+  return "/contacts";
+}
+
+export function getLeadsRoute() {
+  return "/leads";
+}
+
+export function getCalendarRoute() {
+  return "/calendar";
+}
+
+// ====================================================================
+// Cases ROUTES
+//=====================================================================
+
+export function getCasesRoute() {
+  return "/cases";
+}
+
+export function getActivitiesRoute() {
+  return "/activities";
 }
 
 // ====================================================================
