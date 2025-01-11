@@ -11,7 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import {
@@ -21,7 +21,6 @@ import {
   getContactsRoute,
   getDashboardRoute,
   getLeadsRoute,
-  getUsersRoute,
   getActivitiesRoute,
 } from "@/routes";
 import {
@@ -33,10 +32,12 @@ import {
   UserRoundPlus,
   UsersRound,
   BriefcaseBusiness,
+  LogOut,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogoSymbol, LogoCombination } from "./logo";
+import { signOut } from "@/actions/actions";
 
 export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
   const { className, ...rest } = props;
@@ -51,49 +52,24 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
         </Link>
       </SidebarHeader>
 
-      <SidebarContent className="gap-y-4 pt-6 !text-base md:max-lg:items-center md:max-lg:px-1 ">
-        {/* MENU */}
-        <SidebarGroup className="gap-y-1 p-0 md:max-lg:w-fit">
-          <SidebarGroupLabel className="px-6 group/label font-semibold text-[#1b1b1bad] md:max-lg:hidden">
-            Menu
-          </SidebarGroupLabel>
-
-          <SidebarGroupContent>
-            <SidebarMenu className="md:max-lg:w-fit">
-              {/* Dashboard */}
-              <SidebarMenuItem className="md:max-lg:w-fit">
-                <SidebarMenuButton
-                  asChild
-                  isActive={currentPath === getDashboardRoute()}
-                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136] hover:border-l-4 hover:border-[#E34136] hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
-                  title="Dashboard"
-                  tooltip="Dashboard"
-                >
-                  <Link href={getDashboardRoute()}>
-                    <LayoutDashboard className="size-4" />
-                    <span className="md:max-lg:hidden">Dashboard</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              {/* Accounts */}
-              <SidebarMenuItem className="md:max-lg:w-fit">
-                <SidebarMenuButton
-                  asChild
-                  isActive={currentPath === getAccountsRoute()}
-                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136] hover:border-l-4 hover:border-[#E34136] hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
-                  title="Accounts"
-                  tooltip="Accounts"
-                >
-                  <Link href={getAccountsRoute()}>
-                    <UserRound className="size-4" />
-                    <span className="md:max-lg:hidden">Accounts</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+      <SidebarContent className="gap-y-4 pt-6 !text-base md:max-lg:items-center md:max-lg:px-1 scrollbar-thin scroll-smooth scrollbar-thumb-gray-500 scrollbar-track-gray-300">
+        {/* Dashboard */}
+        <SidebarMenu className="md:max-lg:w-fit">
+          <SidebarMenuItem className="md:max-lg:w-fit">
+            <SidebarMenuButton
+              asChild
+              isActive={currentPath === getDashboardRoute()}
+              className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136]  hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
+              title="Dashboard"
+              tooltip="Dashboard"
+            >
+              <Link href={getDashboardRoute()}>
+                <LayoutDashboard className="size-4" />
+                <span className="md:max-lg:hidden">Dashboard</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
 
         {/* LEADS */}
         <SidebarGroup className="gap-y-1 p-0 md:max-lg:w-fit">
@@ -104,11 +80,26 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
           <SidebarGroupContent>
             <SidebarMenu className="md:max-lg:w-fit">
               {/* Contacts */}
+              {/* Accounts */}
+              <SidebarMenuItem className="md:max-lg:w-fit">
+                <SidebarMenuButton
+                  asChild
+                  isActive={currentPath === getAccountsRoute()}
+                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136]  hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
+                  title="Accounts"
+                  tooltip="Accounts"
+                >
+                  <Link href={getAccountsRoute()}>
+                    <UserRound className="size-4" />
+                    <span className="md:max-lg:hidden">Accounts</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
               <SidebarMenuItem className="md:max-lg:w-fit">
                 <SidebarMenuButton
                   asChild
                   isActive={currentPath === getContactsRoute()}
-                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136] hover:border-l-4 hover:border-[#E34136] hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
+                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136]  hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
                   title="Contacts"
                   tooltip="Contacts"
                 >
@@ -124,7 +115,7 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuButton
                   asChild
                   isActive={currentPath === getLeadsRoute()}
-                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136] hover:border-l-4 hover:border-[#E34136] hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
+                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136]  hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
                   title="Leads"
                   tooltip="Leads"
                 >
@@ -140,7 +131,7 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuButton
                   asChild
                   isActive={currentPath === getCalendarRoute()}
-                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136] hover:border-l-4 hover:border-[#E34136] hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
+                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136]  hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
                   title="Calendar"
                   tooltip="Calendar"
                 >
@@ -167,7 +158,7 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuButton
                   asChild
                   isActive={currentPath === getCasesRoute()}
-                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136] hover:border-l-4 hover:border-[#E34136] hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
+                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136]  hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
                   title="Cases"
                   tooltip="Cases"
                 >
@@ -183,7 +174,7 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuButton
                   asChild
                   isActive={currentPath === getActivitiesRoute()}
-                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136] hover:border-l-4 hover:border-[#E34136] hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
+                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136]  hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
                   title="Activities"
                   tooltip="Activities"
                 >
@@ -193,28 +184,26 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-
-              {/* Users */}
-              <SidebarMenuItem className="md:max-lg:w-fit">
-                <SidebarMenuButton
-                  asChild
-                  isActive={currentPath === getUsersRoute()}
-                  className={`px-6 h-12 text-base text-[#1B1B1B] transition-all duration-300 rounded-none data-[active=true]:border-l-4 data-[active=true]:border-[#E34136] hover:border-l-4 hover:border-[#E34136] hover:bg-[#e342361a] hover:text-[#E34136] focus-visible:bg-transparent focus-visible:text-[#E34136] data-[active=true]:bg-[#e342361a] data-[active=true]:text-[#E34136] md:max-lg:size-10 md:max-lg:justify-center`}
-                  title="Users"
-                  tooltip="Users"
-                >
-                  <Link href={getUsersRoute()}>
-                    <UserCheck className="size-4" />
-                    <span className="md:max-lg:hidden">Users</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarRail />
+      <SidebarFooter className="">
+        <SignOutButton />
+      </SidebarFooter>
     </Sidebar>
+  );
+}
+
+function SignOutButton() {
+  return (
+    <button
+      onClick={() => signOut()}
+      className={`flex space-x-2 items-center text-[#1B1B1B] text-base px-4 hover:text-[#E34136] hover:bg-[#e342361a]`}
+    >
+      <LogOut className="size-4" />
+      <p>Logout</p>
+    </button>
   );
 }
