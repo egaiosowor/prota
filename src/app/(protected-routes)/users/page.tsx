@@ -2,6 +2,11 @@ import { getUsers } from "@/lib/db";
 import Search from "@/components/ui/search";
 import UsersTable from "@/components/ui/usersTable";
 import Pagination from "@/components/ui/pagination";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Users | Prota",
+};
 
 export default async function UsersList({
   searchParams,
