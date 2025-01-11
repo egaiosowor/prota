@@ -1,6 +1,5 @@
 import { Label } from "./label";
 import { Input } from "./input";
-import type { ProfileFormState } from "@/lib/definitions";
 
 type InputWithLabelProps = {
   label: string;
@@ -8,7 +7,6 @@ type InputWithLabelProps = {
   name: string;
   type: string;
   defaultValue: string;
-  state: ProfileFormState;
 };
 
 const InputWithLabel = ({

@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 import { getUser } from "@/lib/db";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import { UserCardSkeleton } from "./skeletons";
 
 const UserMenu = async () => {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {
     data: { user },

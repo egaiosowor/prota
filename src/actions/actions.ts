@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 
 import {
   SignupFormState,
@@ -24,7 +24,7 @@ export async function login(
   state: LoginFormState,
   formData: FormData
 ): Promise<LoginFormState> {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const validatedFields = LoginFormSchema.safeParse({
     email: formData.get("email"),
@@ -56,7 +56,7 @@ export async function signUp(
   state: SignupFormState,
   formData: FormData
 ): Promise<SignupFormState> {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const validatedFields = SignupFormSchema.safeParse({
     first_name: formData.get("first_name"),
@@ -95,7 +95,7 @@ export async function signUp(
 }
 
 export async function signOut() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { error } = await supabase.auth.signOut();
 
@@ -133,7 +133,7 @@ export async function updateProfile(
   };
 
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
 
     const { error } = await supabase
       .from("profiles")

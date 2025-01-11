@@ -1,8 +1,8 @@
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import type { User } from "./definitions";
 
 export const getUser = async (id: string | undefined): Promise<User | null> => {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   try {
     const { data: user } = await supabase
@@ -21,7 +21,7 @@ export const getUser = async (id: string | undefined): Promise<User | null> => {
 };
 
 export const getUsers = async (query?: string): Promise<User[] | null> => {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   if (query) {
     try {

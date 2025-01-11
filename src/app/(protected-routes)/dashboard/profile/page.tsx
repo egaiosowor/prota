@@ -3,14 +3,14 @@ import UserBio from "@/components/ui/userBio";
 import ProfileForm from "@/components/forms/profileForm";
 
 import { getUser } from "@/lib/db";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "Profile | Prota",
 };
 
 export default async function ProfilePage() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {
     data: { user },
