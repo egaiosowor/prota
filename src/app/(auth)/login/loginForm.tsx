@@ -7,7 +7,6 @@ import AuthButton from "../authButton";
 
 import { useFormState } from "react-dom";
 
-import ZodError from "@/components/ui/zodError";
 import { getSignupRoute } from "@/routes";
 
 export default function LoginForm() {
@@ -27,7 +26,6 @@ export default function LoginForm() {
               name="email"
               className="w-full p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
             />
-            <ZodError state={state} name="email" />
           </div>
           <div className="col-span-2">
             <input
@@ -36,13 +34,12 @@ export default function LoginForm() {
               name="password"
               className="w-full p-2 text-black placeholder:text-gray-600 placeholder:text-sm bg-transparent border border-gray-400 outline-none rounded-md"
             />
-            <ZodError state={state} name="password" />
           </div>
 
           <AuthButton name="Login" />
         </form>
         <p className="text-center">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href={getSignupRoute()} className="text-blue-700">
             Sign Up
           </Link>

@@ -3,7 +3,7 @@ import UserBio from "@/components/ui/userBio";
 import ProfileForm from "@/components/forms/profileForm";
 
 import { getUser } from "@/lib/db";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/client";
 
 export const metadata: Metadata = {
   title: "Profile | Prota",
