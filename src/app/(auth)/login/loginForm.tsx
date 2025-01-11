@@ -3,14 +3,16 @@
 import Link from "next/link";
 
 import { login } from "@/actions/actions";
-import AuthButton from "../authButton";
 
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 
 import { getSignupRoute } from "@/routes";
+import { buttonVariants } from "@/components/ui/button";
+import Loader from "@/components/ui/loader";
+import { Button } from "@/components/ui/button";
 
 export default function LoginForm() {
-  const [state, formAction] = useFormState(login, undefined);
+  const [state, formAction, isPending] = useActionState(login, undefined);
 
   return (
     <div className="w-80 space-y-8">
@@ -36,7 +38,14 @@ export default function LoginForm() {
             />
           </div>
 
-          <AuthButton name="Login" />
+          <Button
+            type="submit"
+            disabled={isPending}
+            className={buttonVariants({ size: "lg", className: "col-span-2" })}
+          >
+            {isPending && <Loader fill={"fill-black"} />}
+            {isPending ? "Submitting" : "Login"}
+          </Button>
         </form>
         <p className="text-center">
           Don&apos;t have an account?{" "}

@@ -4,13 +4,13 @@ import Link from "next/link";
 
 import { signUp } from "@/actions/actions";
 
-import AuthButton from "../authButton";
-
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { getLoginRoute } from "@/routes";
+import { Button, buttonVariants } from "@/components/ui/button";
+import Loader from "@/components/ui/loader";
 
 export default function SignUpForm() {
-  const [state, formAction] = useFormState(signUp, undefined);
+  const [state, formAction, isPending] = useActionState(signUp, undefined);
 
   return (
     <div className="w-ful max-w-96 space-y-8">
@@ -75,7 +75,14 @@ export default function SignUpForm() {
             )}
           </div>
 
-          <AuthButton name="Create Account" />
+          <Button
+            type="submit"
+            disabled={isPending}
+            className={buttonVariants({ size: "lg", className: "col-span-2" })}
+          >
+            {isPending && <Loader fill={"fill-black"} />}
+            {isPending ? "Submitting" : "Create Account"}
+          </Button>
         </form>
         <p className="text-center">
           Already have an account?{" "}
