@@ -8,13 +8,14 @@ export const metadata: Metadata = {
   title: "Users | Prota",
 };
 
+type SearchParams = Promise<{
+  query?: string;
+  page?: string;
+}>;
 export default async function UsersList({
   searchParams,
 }: {
-  searchParams: {
-    query?: string;
-    page?: string;
-  };
+  searchParams: SearchParams;
 }) {
   const { query } = await searchParams;
   const users = await getUsers(query);
